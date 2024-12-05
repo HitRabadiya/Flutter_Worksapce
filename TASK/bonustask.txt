@@ -1,0 +1,54 @@
+class Person {
+  final String name;
+  final int age;
+  Person(this.name, this.age) {}
+}
+
+class Student extends Person {
+  int grade = 0;
+  Student(super.name, super.age, int grade) {
+    this.grade = grade;
+  }
+
+  printDetails() {
+    print("$name and $age and $grade");
+  }
+}
+
+class Teacher extends Person {
+  String subject = "";
+  Teacher(super.name, super.age, String subject) {
+    this.subject = subject;
+  }
+  printDetails() {
+    print(
+        "Teacher's name is ${super.name}, Age is ${super.age} and subject is $subject. ");
+  }
+}
+
+class School {
+  static int totalPeople = 0;
+
+  static addPerson() {
+    totalPeople += 1;
+  }
+
+  static int getToatlpeople() {
+    return totalPeople;
+  }
+}
+
+void main() {
+  var s = Student("ABC", 16, 10);
+  var t = Teacher("XYZ", 30, "MATHS");
+
+  s.printDetails();
+  print("");
+  t.printDetails();
+  print("");
+
+  School.addPerson;
+  School.addPerson;
+
+  print("Total people in school is: ${School.getToatlpeople()}");
+}
