@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  TextEditingController _controller = TextEditingController(); // Controller for TextField
+  String _displayText = ''; // String to hold the displayed text
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter Text Input Example'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // TextField
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                labelText: 'Enter some text',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            
+            // Submit Button
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _displayText = _controller.text; // Display the entered text below the button
+                });
+              },
+              child: Text('Submit'),
+            ),
+            SizedBox(height: 20),
+            
+            // Display the entered text
+            Text(
+              'You entered: $_displayText',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+      
+      // Floating Action Button
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+         // Clear the TextField when FAB is pressed
+          setState(() {
+            _displayText = ''; // Reset the displayed text
+          });
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
